@@ -86,13 +86,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             });
         };
 
+        // TODO: Write JS code here!'
+        // q3. backend interceptor에 user 정보를 가져오도록 완성 하시오.
         const getUser = () => {
-            const urlValues = url.split('/');
-            const userId = urlValues[urlValues.length - 1];
             return ok({
                 status: 200,
                 statusText: 'ok',
-                data: users.find((user: User) => user.nickName === userId)
+                data: null
             });
         };
 
@@ -141,10 +141,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // wrap in delayed observable to simulate server api call
         return of(null)
-            .pipe(mergeMap(handleRoute))
-            .pipe(materialize())
-            .pipe(delay(500))
-            .pipe(dematerialize());
+            .pipe(
+                mergeMap(handleRoute),
+                materialize(),
+                delay(500),
+                dematerialize()
+            );
     }
 }
 

@@ -30,21 +30,18 @@ export class MainComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        const routeParams = this.route.snapshot.paramMap;
+        // q2. user정보가 없다면 login 화면으로 이동하도록 완성 하시오.
+        // TODO: Write JS code here!'
         // userId가 없다면 login page로 이동.
-        const userId = routeParams.get('userId');
-        if (!userId) {
-            this.router.navigate(['login']);
-            return;
-        }
-        this.subscription.add(
-            this.mainService.mainData$.subscribe((mainData: MainData) => {
-                this.userProfile = mainData.userInfo;
-                this.feeds = mainData.feeds;
-            })
-        );
 
-        this.mainService.getMainData(userId);
+        // this.subscription.add(
+        //     this.mainService.mainData$.subscribe((mainData: MainData) => {
+        //         this.userProfile = mainData.userInfo;
+        //         this.feeds = mainData.feeds;
+        //     })
+        // );
+
+        // this.mainService.getMainData(userId);
     }
 
     onPageChange(currentPage: number): void {

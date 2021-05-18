@@ -11,20 +11,15 @@ export interface MainData {
 
 @Injectable()
 export class MainService {
-    private mainDataSubject: Subject<MainData> = new Subject();
+    // q5. main page controller 인 main.service.ts에 subject를 이용하여 main data를 가져올 수 있는 hot observable을 구현하시오.
+    // TODO: Write JS code here!'
 
     constructor(
         private apiService: FeedApiService
     ) {
     }
 
-    get mainData$(): Observable<MainData> {
-        return this.mainDataSubject.asObservable();
-    }
-
     getMainData(userId: string) {
-        this.apiService.getMainData(userId).subscribe((result: MainData) => {
-            this.mainDataSubject.next(result);
-        });
+
     }
 }

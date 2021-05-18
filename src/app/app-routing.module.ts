@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// q1. url path가 home/{userId}로 접속하면 main page component를 출력하도록 완성 하시오.
+// TODO: Write JS code here!'
 const routes: Routes = [
     {
         path: '',
         redirectTo: '/login',
         pathMatch: 'full'
-    },
-    {
-        path: 'home/:userId',
-        loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule)
     },
     {
         path: 'login',

@@ -4,7 +4,15 @@ Q. 구글에서 개발한 frontend framework인 angular로 web application을 �
 
 ## 문제
 
-q1. app 이 구동되기전에 assets/config/configuration.json 을 가져와 저장 후 app이 구동이 되도록 완성하시오.
+q1. url path가 home/{userId}로 접속하면 main page component를 출력하도록 완성 하시오.
+
+q2. main page에서 user정보가 없다면 login 화면으로 이동하도록 완성 하시오.
+
+q3. backend interceptor에 user 정보를 가져오도록 완성 하시오.
+
+q4. http 모듈을 이용하여 user 정보를 호출하는 api를 feed-api.service.ts에 완성하시오.
+
+q5. main page controller 인 main.service.ts에 subject를 이용하여 main data를 가져올 수 있는 hot observable을 구현하시오.
 
 ## 기능요구사항 및 기획
 

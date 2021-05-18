@@ -62,14 +62,11 @@ export class FeedApiService extends BaseService {
             );
     }
 
-    getUserInfo(userId: string): Observable<UserProfileModel> {
-        const url = `${this.globalVariableService.remoteUrl}${this.PRE_FIX}/user/${userId}`;
-        return this.http.get<BackendResponse<User>>(url)
-            .pipe(
-                map((response: BackendResponse<User>) => {
-                    return userMapperForUserProfile(response.data);
-                })
-            );
+    // TODO: Write JS code here!'
+    // q4. http 모듈을 이용하여 user 정보를 호출하는 api를 feed-api.service.ts에 완성하시오.
+    getUserInfo(userId: string): Observable<any> {
+        const url = `${this.globalVariableService.remoteUrl}${this.PRE_FIX}`;
+        return this.http.get<BackendResponse<User>>(url);
     }
 
     getMainData(userId: string): Observable<{
