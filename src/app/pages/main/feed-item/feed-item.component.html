@@ -8,12 +8,12 @@
     <div class="feed-body">
         <img class="feed-img" [src]="feed?.feedImage" alt="">
         <div class="feed-like">
-            <ng-template [ngIf]="feed?.like" [ngIfElse]="notLike">
-                <button class="btn-like is-active">응원해요</button>
-                <span class="like-count">{{feed?.like}}명이 응원해요</span>
+            <ng-template [ngIf]="feedLike > 0" [ngIfElse]="notLike">
+                <button class="btn-like is-active" (click)="onLike()">응원해요</button>
+                <span class="like-count">{{feedLike}}명이 응원해요</span>
             </ng-template>
             <ng-template #notLike>
-                    <button class="btn-like">응원해요</button>
+                    <button class="btn-like" (click)="onLike()">응원해요</button>
                     <span class="like-count">첫번째로 응원하기</span>
             </ng-template>
         </div>

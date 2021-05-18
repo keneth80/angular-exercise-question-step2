@@ -17,9 +17,8 @@ export class FeedItemService {
         return this.replyListSubject.asObservable();
     }
 
-    addReply(reply: Reply) {
+    addReply(reply: any) {
         this.apiService.addReply(reply).subscribe((result: ReplyModel[]) => {
-            console.log('result : ', result);
             this.replyListSubject.next(result);
         });
     }

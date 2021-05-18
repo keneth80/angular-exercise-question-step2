@@ -24,7 +24,6 @@ export class MainService {
 
     getMainData(userId: string) {
         this.apiService.getMainData(userId).subscribe((result: MainData) => {
-            console.log('result : ', result);
             this.mainDataSubject.next(result);
         });
     }

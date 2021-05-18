@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AuthenticationService } from '../../common/services/authentication/authentication.service';
 import { Subscription } from 'rxjs';
 import { UserProfileModel } from '../../common/models/user-profile.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SpinnerService } from '../../common/components/spinner/spinner.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private fb: FormBuilder,
         private authService: AuthenticationService,
+        private route: ActivatedRoute,
         private router: Router,
         private spinner: SpinnerService
     ) {}
@@ -40,13 +41,18 @@ export class LoginComponent implements OnInit, OnDestroy {
             })
         });
 
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'];
+
         // user model에 대해 구독.
         this.subscription.add(
             this.authService.userModel$.subscribe((userModel: UserProfileModel) => {
                 if (userModel.userEmail) {
-                    console.log('userModel : ', userModel);
                     this.spinner.stop();
-                    this.router.navigate(['/main']);
+                    if (returnUrl) {
+                        this.router.navigate([returnUrl]);
+                    } else {
+                        this.router.navigate(['/home/' + userModel.userNickName]);
+                    }
                 }
             })
         );

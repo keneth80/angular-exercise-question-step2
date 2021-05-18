@@ -26,7 +26,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return registerFeed();
                 case url.endsWith('/reply') && method === 'POST':
                     return registerReply();
-                case url.endsWith('/reply') && method === 'GET':
+                case url.match(/\/reply\/.*/) && method === 'GET':
                     return getReplys();
                 case url.match(/\/user\/.*/) && method === 'GET':
                     return getUser();
@@ -40,13 +40,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             }
         };
 
-        console.log('FakeBackendInterceptor : ', request);
-
-        // route functions
-
         const authenticate = () => {
             const { email, password } = body;
-            console.log('body : ', body);
             const user = userAuth.find((userObj: UserAuth) => userObj.email === email && userObj.password === password);
 
             if (!user) return error('Email or password is incorrect');
@@ -82,10 +77,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         };
 
         const getReplys = () => {
+            const urlValues = url.split('/');
+            const feedId = +urlValues[urlValues.length - 1];
             return ok({
                 status: 200,
                 statusText: 'ok',
-                data: replys
+                data: replys.filter((reply: Reply) => reply.feedId === feedId)
             });
         };
 
@@ -100,8 +97,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         };
 
         const searchFeeds = () => {
-            if (!isLoggedIn()) return unauthorized();
-
             const { tag } = body;
             const feedFilter = feeds.filter((feedObj: Feed) => feedObj.tags.includes(tag));
             return ok(feedFilter);
@@ -119,8 +114,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         };
 
         const registerReply = () => {
-            if (!isLoggedIn()) return unauthorized();
-
             const reply = body;
             reply.id = replys.length ? Math.max(...replys.map((replyObj: Reply) => replyObj.id)) + 1 : 1;
             reply.created = new Date().getTime();
@@ -143,7 +136,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         };
 
         const isLoggedIn = () => {
-            return headers.get('Authorization') === 'Bearer fake-jwt-token';
+            return true;
         };
 
         // wrap in delayed observable to simulate server api call

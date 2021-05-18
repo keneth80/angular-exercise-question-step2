@@ -18,7 +18,6 @@ export class GlobalVariableService {
     // TODO: question http client를 사용하여 assets/config/configuration.json 파일을 로드하여 저장할 것.
     // 단, return type 은 Promise여야 함.
     getConfiguration(): Promise<any> {
-        console.log('http : ', this.http);
         return this.http.get('assets/config/configuration.json')
             .toPromise()
             .then((res: any) => {

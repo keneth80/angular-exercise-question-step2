@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { SpinnerService } from '../../common/components/spinner/spinner.service';
 import { ConfirmValidator } from '../../common/validators/confirm.validator';
 import { Subscription } from 'rxjs';
+import { REGISTER_COMPLETE_MESSAGE } from '../../common/const';
 
 @Component({
     selector: 'app-enter',
@@ -46,7 +47,7 @@ export class EnterComponent implements OnInit, OnDestroy {
 
         this.subscription = this.authService.userEnter$.subscribe((result: boolean) => {
             this.spinner.stop();
-            alert('회원 가입이 완료되었습니다.');
+            alert(REGISTER_COMPLETE_MESSAGE);
             this.router.navigate(['/login']);
         });
     }

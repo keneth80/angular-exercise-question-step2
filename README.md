@@ -2,6 +2,10 @@
 
 Q. 구글에서 개발한 frontend framework인 angular로 web application을 구현해보자.
 
+## 문제
+
+q1. app 이 구동되기전에 assets/config/configuration.json 을 가져와 저장 후 app이 구동이 되도록 완성하시오.
+
 ## 기능요구사항 및 기획
 
 ![image](https://user-images.githubusercontent.com/12759765/115124670-5d414400-9ffe-11eb-8854-cc297ecb2969.png)

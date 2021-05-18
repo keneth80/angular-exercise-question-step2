@@ -7,7 +7,7 @@ import { GlobalVariableService } from '../../services/application/global-variabl
 import { BackendResponse } from '../models/backend-response';
 import { User } from '../models/user';
 import { UserProfileModel } from '../../models/user-profile.model';
-import { userMapperForUserProfile, feedMapperForFeedModel } from '../../mappers';
+import { userMapperForUserProfile, feedMapperForFeedModel, replyMapperForReplyModel } from '../../mappers';
 import { throwError, Observable, forkJoin } from 'rxjs';
 import { UserParam } from '../../models/params/user-param';
 import { Feed } from '../models/feed';
@@ -88,11 +88,17 @@ export class FeedApiService extends BaseService {
         return this.http.post<BackendResponse>(addUrl, reply)
             .pipe(
                 concatMap((response: BackendResponse) =>
-                    this.http.get<BackendResponse<Reply[]>>(`${this.globalVariableService.remoteUrl}${this.PRE_FIX}/reply`)
+                    this.http.get<BackendResponse<Reply[]>>(`${this.globalVariableService.remoteUrl}${this.PRE_FIX}/reply/${reply.feedId}`)
                 ),
                 map((response: BackendResponse<Reply[]>) => {
-                    console.log('response : ', response);
                     const replyNodels: ReplyModel[] = [];
+                    if (response.data) {
+                        for (let i = 0; i < response.data.length; i++) {
+                            replyNodels.push(
+                                replyMapperForReplyModel(response.data[i])
+                            );
+                        }
+                    }
                     return replyNodels;
                 })
             );
