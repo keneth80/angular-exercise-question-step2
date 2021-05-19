@@ -47,13 +47,9 @@ export class FeedItemComponent implements OnInit, OnDestroy {
         );
 
         // login 여부 체크
-        this.subscription.add(
-            this.authService.userModel$.subscribe((profile: UserProfileModel) => {
-                if (profile.userEmail) {
-                    this.userProfile = profile;
-                }
-            })
-        );
+        if (this.authService.userModel.userEmail) {
+            this.userProfile = this.authService.userModel;
+        }
     }
 
     ngOnDestroy(): void {

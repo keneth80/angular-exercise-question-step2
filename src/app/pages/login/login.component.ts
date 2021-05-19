@@ -44,18 +44,18 @@ export class LoginComponent implements OnInit, OnDestroy {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'];
 
         // user model에 대해 구독.
-        this.subscription.add(
-            this.authService.userModel$.subscribe((userModel: UserProfileModel) => {
-                if (userModel.userEmail) {
-                    this.spinner.stop();
-                    if (returnUrl) {
-                        this.router.navigate([returnUrl]);
-                    } else {
-                        this.router.navigate(['/home/' + userModel.userNickName]);
-                    }
-                }
-            })
-        );
+        // this.subscription.add(
+        //     this.authService.userModel$.subscribe((userModel: UserProfileModel) => {
+        //         if (userModel.userEmail) {
+        //             this.spinner.stop();
+        //             if (returnUrl) {
+        //                 this.router.navigate([returnUrl]);
+        //             } else {
+        //                 this.router.navigate(['/home/' + userModel.userNickName]);
+        //             }
+        //         }
+        //     })
+        // );
     }
 
     ngOnDestroy(): void {

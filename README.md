@@ -2,6 +2,8 @@
 
 Q. 구글에서 개발한 frontend framework인 angular로 web application을 구현해보자.
 
+Q. root로 '/' 로 접속하면 로그인 화면이 나온다. localhost:4200/home/rupy로 접속했을 때 메인 화면이 나오도록 코드를 완성하자.
+
 ## 문제
 
 q1. url path가 home/{userId}로 접속하면 main page component를 출력하도록 완성 하시오.
@@ -13,6 +15,8 @@ q3. backend interceptor에 user 정보를 가져오도록 완성 하시오.
 q4. http 모듈을 이용하여 user 정보를 호출하는 api를 feed-api.service.ts에 완성하시오.
 
 q5. main page controller 인 main.service.ts에 subject를 이용하여 main data를 가져올 수 있는 hot observable을 구현하시오.
+
+q6. login 여부를 체크하기 위해서 user정보를 멀티캐스트로 방출하는 컨트롤러를 작성하시오.
 
 ## 기능요구사항 및 기획
 

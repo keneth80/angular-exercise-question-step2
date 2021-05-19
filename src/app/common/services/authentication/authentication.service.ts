@@ -11,7 +11,7 @@ import { UserParam } from '../../models/params/user-param';
 export class AuthenticationService {
     // 로그인 데이터를 발행하지 않아도 가져오기 위해 BehaviorSubject를 썼지만,
     // session storage에 담는다던가 쿠키에 담는 다던가 하는 방법은 선택하여 구현하도록 한다.
-    private userModelSubject: Subject<UserProfileModel> = new BehaviorSubject({});
+    private userModelSubject: BehaviorSubject<UserProfileModel> = new BehaviorSubject({});
 
     private userEnterSubject: Subject<boolean> = new Subject();
 
@@ -19,18 +19,19 @@ export class AuthenticationService {
         private apiService: FeedApiService
     ) { }
 
-    get userModel$(): Observable<UserProfileModel> {
-        return this.userModelSubject.asObservable();
-    }
+    // q6. login 여부를 체크하기 위해서 user정보를 멀티캐스트로 방출하는 컨트롤러를 작성하시오.
+    // TODO: Write JS code here!'
 
     get userEnter$(): Observable<boolean> {
         return this.userEnterSubject.asObservable();
     }
 
+    get userModel(): UserProfileModel {
+        return this.userModelSubject.value;
+    }
+
     login(email: string, password: string) {
-        this.apiService.login(email, password).subscribe((userModel: UserProfileModel | any) => {
-            this.userModelSubject.next(userModel);
-        });
+
     }
 
     enter(param: UserParam) {

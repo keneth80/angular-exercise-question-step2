@@ -19,11 +19,11 @@ export class GnbComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.subscription = this.authService.userModel$.subscribe((userModel: UserProfileModel) => {
-            if (userModel.userEmail) {
-                this.userProfile = userModel;
-            }
-        });
+        // this.subscription = this.authService.userModel$.subscribe((userModel: UserProfileModel) => {
+        //     if (userModel.userEmail) {
+        //         this.userProfile = userModel;
+        //     }
+        // });
     }
 
     ngOnDestroy(): void {
