@@ -70,25 +70,25 @@ export class PaginationComponent implements OnInit, OnChanges {
             first = last;
         }
 
-        if (1 < this.currentPage) {
-            this.isFirst = true;
-        } else {
+        if (1 === first) {
             this.isFirst = false;
+        } else {
+            this.isFirst = true;
         }
 
-        if (first + 1 < this.currentPage) {
+        if (this.currentPage > 1 ) {
             this.isPrev = true;
         } else {
             this.isPrev = false;
         }
 
-        if (last > this.currentPage) {
+        if (this.totalPage > this.currentPage) {
             this.isNext = true;
         } else {
             this.isNext = false;
         }
 
-        if (last === this.currentPage) {
+        if (this.totalPage === this.currentPage) {
             this.isLast = false;
         } else {
             this.isLast = true;
