@@ -44,8 +44,8 @@ export class FeedApiService extends BaseService {
         return this.http.post<BackendResponse<any>>(url, param);
     }
 
-    getFeedList(userId: string): Observable<FeedModel[]> {
-        const url = `${this.globalVariableService.remoteUrl}${this.PRE_FIX}/feeds`;
+    getFeedList(userNickName: string): Observable<FeedModel[]> {
+        const url = `${this.globalVariableService.remoteUrl}${this.PRE_FIX}/feeds/${userNickName}`;
         return this.http.get<BackendResponse<Array<Feed>>>(url)
             .pipe(
                 map((response: BackendResponse<Array<Feed>>) => {
@@ -64,18 +64,18 @@ export class FeedApiService extends BaseService {
 
     // TODO: Write JS code here!'
     // q4. http 모듈을 이용하여 user 정보를 호출하는 api를 feed-api.service.ts에 완성하시오.
-    getUserInfo(userId: string): Observable<any> {
+    getUserInfo(userNickName: string): Observable<any> {
         const url = `${this.globalVariableService.remoteUrl}${this.PRE_FIX}`;
         return this.http.get<BackendResponse<User>>(url);
     }
 
-    getMainData(userId: string): Observable<{
+    getMainData(userNickName: string): Observable<{
         userInfo: any,
         feeds: any
     }> {
         return forkJoin({
-            userInfo: this.getUserInfo(userId),
-            feeds: this.getFeedList(userId)
+            userInfo: this.getUserInfo(userNickName),
+            feeds: this.getFeedList(userNickName)
         });
     }
 

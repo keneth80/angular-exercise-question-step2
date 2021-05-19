@@ -6,7 +6,7 @@ Q. root로 '/' 로 접속하면 로그인 화면이 나온다. localhost:4200/ho
 
 ## 문제
 
-q1. url path가 home/{userId}로 접속하면 main page component를 출력하도록 완성 하시오.
+q1. url path가 home/{userNickName}로 접속하면 main page component를 출력하도록 완성 하시오.
 
 q2. main page에서 user정보가 없다면 login 화면으로 이동하도록 완성 하시오.
 

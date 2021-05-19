@@ -30,7 +30,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getReplys();
                 case url.match(/\/user\/.*/) && method === 'GET':
                     return getUser();
-                case url.endsWith('/feeds') && method === 'GET':
+                case url.match(/\/feeds\/.*/) && method === 'GET':
                     return getFeeds();
                 case url.endsWith('/search') && method === 'GET':
                     return searchFeeds();
@@ -69,10 +69,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         };
 
         const getFeeds = () => {
+            const urlValues = url.split('/');
+            const userId = urlValues[urlValues.length - 1];
             return ok({
                 status: 200,
                 statusText: 'ok',
-                data: feeds
+                data: feeds.filter((feed: Feed) => feed.userNickName === userId)
             });
         };
 
