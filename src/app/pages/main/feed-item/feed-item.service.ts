@@ -3,6 +3,7 @@ import { Subject, Observable } from 'rxjs';
 import { ReplyModel } from '../../../common/models/reply.model';
 import { FeedApiService } from '../../../common/backend/api/feed-api.service';
 import { Reply } from '../../../common/backend/models/reply';
+import { ReplyParam } from '../../../common/models/params/reply-param';
 
 @Injectable()
 export class FeedItemService {
@@ -17,7 +18,7 @@ export class FeedItemService {
         return this.replyListSubject.asObservable();
     }
 
-    addReply(reply: any) {
+    addReply(reply: ReplyParam) {
         this.apiService.addReply(reply).subscribe((result: ReplyModel[]) => {
             this.replyListSubject.next(result);
         });

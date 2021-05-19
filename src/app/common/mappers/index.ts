@@ -11,7 +11,7 @@ import { Reply } from '../backend/models/reply';
 // https://angular.io/api/common/DatePipe
 
 export const userMapperForUserProfile = (user: User): UserProfileModel => {
-    return user ? {
+    return {
         id: user.id,
         userNickName: user.nickName,
         userEmail: user.email,
@@ -24,11 +24,11 @@ export const userMapperForUserProfile = (user: User): UserProfileModel => {
         likeFeeds: user.likeFeeds,
         tags: user.tags,
         topTags: user.topTags
-    } : {};
+    };
 };
 
 export const feedMapperForFeedModel = (feed: Feed): FeedModel => {
-    return feed ? {
+    return {
         id: feed.id,
         userId: feed.userId,
         userName: feed.userName,
@@ -40,7 +40,7 @@ export const feedMapperForFeedModel = (feed: Feed): FeedModel => {
         reply: feed.reply.map((reply: Reply) => replyMapperForReplyModel(reply)) || [],
         feedImage: feed.image,
         like: feed.like
-    } : {};
+    };
 };
 
 export const replyMapperForReplyModel = (reply: Reply): ReplyModel => {

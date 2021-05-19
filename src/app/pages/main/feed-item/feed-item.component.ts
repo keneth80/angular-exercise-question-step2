@@ -68,8 +68,8 @@ export class FeedItemComponent implements OnInit, OnDestroy {
         this.feedItemService.addReply({
             id: 0,
             content: this.replyContent,
-            userId: this.userProfile.id,
-            userNickName: this.userProfile.userNickName,
+            userId: this.userProfile.id || 0,
+            userNickName: this.userProfile.userNickName || '',
             feedId: this.feed.id,
             created: new Date().getTime()
         });
