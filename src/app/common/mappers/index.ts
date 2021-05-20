@@ -11,7 +11,7 @@ import { Reply } from '../backend/models/reply';
 // https://angular.io/api/common/DatePipe
 
 export const userMapperForUserProfile = (user: User): UserProfileModel => {
-    return {
+    return user ? {
         id: user.id,
         userNickName: user.nickName,
         userEmail: user.email,
@@ -24,7 +24,7 @@ export const userMapperForUserProfile = (user: User): UserProfileModel => {
         likeFeeds: user.likeFeeds,
         tags: user.tags,
         topTags: user.topTags
-    };
+    } : {};
 };
 
 export const feedMapperForFeedModel = (feed: Feed): FeedModel => {
